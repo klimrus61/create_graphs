@@ -73,3 +73,8 @@ class PathToFile:
         for file in date_folder.iterdir():
             if file.suffix == '.csv':
                 yield file
+    
+    def check_config_exist(self) -> Path|None:
+        '''Проверить наличие конфига'''
+        path_to_config = Path(self.main_path, 'config.csv')
+        return path_to_config.exists()
