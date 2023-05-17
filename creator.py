@@ -3,8 +3,6 @@ from parse import parse_data_from_csv, get_all_parameters
 from visualization import save_graph_as_png
 from app_typing import CSVFileData
 
-from multiprocessing import Pool
-
 
 def main():
     print('Начало работы\n'\
@@ -27,6 +25,6 @@ def main():
                 data_to_visual = CSVFileData(series=df[column], title=csv_file.name, path=path_to_pic)
                 save_graph_as_png(data_to_visual)
     print('Конец работы')
-    
+
 if __name__ == "__main__":
     main()

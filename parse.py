@@ -1,8 +1,6 @@
 from pathlib import Path
 import pandas as pd
 
-from app_typing import CSVFileData
-
 
 class ParseDataError(Exception):
     '''Ошибка получения данных'''
