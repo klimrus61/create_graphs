@@ -12,17 +12,22 @@ class CreatePictureError:
 
 def save_graph_as_png(data_frame: CSVFileData):
     '''Сохранить график в формате png'''
-    xformatter = mdates.DateFormatter('%H:%M:%S.%f')
-    plt.ioff()
-    plt.figure().set_figwidth(15)
-    plt.plot(data_frame.series.index, data_frame.series.values)
-    plt.gcf().axes[0].xaxis.set_major_formatter(xformatter)
-    plt.xlabel('Время')
-    # plt.ylabel(data_frame.series.name, rotation=90)
-    plt.title(data_frame.series.name, loc='left')
-    plt.tight_layout()
-    plt.savefig(data_frame.path, format='png', dpi=300)
-    plt.close()
+    try:
+        xformatter = mdates.DateFormatter('%H:%M:%S.%f')
+        plt.ioff()
+        plt.figure().set_figwidth(15)
+        plt.plot(data_frame.series.index, data_frame.series.values)
+        plt.gcf().axes[0].xaxis.set_major_formatter(xformatter)
+        plt.xlabel('Время')
+        # plt.ylabel(data_frame.series.name, rotation=90)
+        plt.title(data_frame.series.name, loc='left')
+        plt.tight_layout()
+        plt.savefig(data_frame.path, format='png', dpi=300)
+        plt.close()
+    except Exception as e:
+        print(e)
+        print(data_frame.path)
+        plt.close()
 
 
 
