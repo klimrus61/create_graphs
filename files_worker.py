@@ -35,7 +35,7 @@ class PathToFile:
 
     def create_main_picture_folder(self, dirpath: Path) -> Path:
         '''Создать главную папку для сриншотов графиков'''
-        picture_folder = Path(dirpath.parent, 'pictures_main_folder')
+        picture_folder = Path(dirpath.parent, f'pictures_{dirpath.stem}')
         if not picture_folder.exists():
             picture_folder.mkdir()
         return picture_folder
