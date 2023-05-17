@@ -4,11 +4,18 @@ import pandas as pd
 from app_typing import CSVFileData
 
 
+class ParseDataError(Exception):
+    '''Ошибка получения данных'''
+
+
 def parse_data_from_csv(csv_path: Path) -> pd.DataFrame:
     '''Получить все данные из csv файла'''
-    df = pd.read_csv(csv_path, delimiter=';', header=1, decimal=',', index_col=0)
-    df.index = pd.to_datetime(df.index, format='%H:%M:%S.%f')
-    return df
+    try:
+        df = pd.read_csv(csv_path, delimiter=';', header=1, decimal=',', index_col=0, encoding='utf-8')
+        df.index = pd.to_datetime(df.index, format='%H:%M:%S.%f')
+        return df
+    except Exception:
+        raise ParseDataError
 
 def get_all_parameters(csv_path: Path) -> list[str]:
     '''Получить параметры csv'''
